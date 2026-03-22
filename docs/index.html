@@ -5547,5 +5547,52 @@
       init();
     })();
   </script>
+        setInterval(() => {
+          updateCurrentTime();
+          updateNextAlarmInfo();
+          checkAlarms();
+        }, 1000);
+      }
+
+      init();
+    })();
+  </script>
+
+  <!-- Кнопка для чата техподдержки -->
+  <div id="supportButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #00ffa2; padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); z-index: 1000;">
+      <i class="fas fa-headset" style="font-size: 24px; color: white;"></i>
+  </div>
+
+  <!-- Модальное окно чата -->
+  <div id="supportChatModal" style="display: none; position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background-color: white; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); padding: 20px; z-index: 1000;">
+      <h4>Техподдержка - всегда онлайн!</h4>
+      <textarea id="supportMessage" style="width: 100%; height: 200px;" placeholder="Напишите ваше сообщение..."></textarea>
+      <button id="sendMessageButton" style="width: 100%; padding: 10px; background-color: #00ffa2; color: white; border: none; border-radius: 5px; margin-top: 10px;">Отправить</button>
+      <button id="closeSupportChat" style="width: 100%; padding: 10px; background-color: red; color: white; border: none; border-radius: 5px; margin-top: 10px;">Закрыть</button>
+  </div>
+
+  <script>
+      // Открыть окно чата
+      document.getElementById('supportButton').addEventListener('click', function() {
+          document.getElementById('supportChatModal').style.display = 'block';
+      });
+
+      // Закрыть окно чата
+      document.getElementById('closeSupportChat').addEventListener('click', function() {
+          document.getElementById('supportChatModal').style.display = 'none';
+      });
+
+      // Отправка сообщения
+      document.getElementById('sendMessageButton').addEventListener('click', function() {
+          var message = document.getElementById('supportMessage').value;
+          if (message) {
+              alert('Ваше сообщение отправлено в техподдержку: ' + message);
+              document.getElementById('supportMessage').value = '';  // Очистить поле
+              document.getElementById('supportChatModal').style.display = 'none';  // Закрыть окно
+          } else {
+              alert('Пожалуйста, напишите сообщение.');
+          }
+      });
+  </script>
 </body>
 </html>
